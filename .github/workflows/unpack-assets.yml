@@ -1,0 +1,56 @@
+name: Unpack Binary Assets & Configure Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/b64/**'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decode binary assets and verify SHA-256
+        run: |
+          set -euo pipefail
+          if [ -d .github/b64 ]; then
+            mkdir -p fonts
+            base64 -d .github/b64/fraunces-latin.woff2.b64 > fonts/fraunces-latin.woff2
+            base64 -d .github/b64/inter-latin.woff2.b64 > fonts/inter-latin.woff2
+            base64 -d .github/b64/og-preview.png.b64 > og-preview.png
+            echo "7234ed860a9cc83045413c4faee63c960a8f2d1917adcf728119307d56e0d783  fonts/fraunces-latin.woff2" | sha256sum -c -
+            echo "2c295d99e26dcf357d4d01bcf270fd6924b600c9a13dd8c363ef114f4c6976fa  fonts/inter-latin.woff2" | sha256sum -c -
+            echo "fc6fb805f17a0d24ac075596e97846d27658dd573709fa4bd448f2cd0fbd7682  og-preview.png" | sha256sum -c -
+            rm -rf .github/b64 .github/workflows/unpack-assets.yml
+            rmdir .github/workflows .github 2>/dev/null || true
+            git config user.name "Daulx Bot"
+            git config user.email "brandon@daulx.com"
+            git add -A
+            git commit -m "Add binary font and OpenGraph image assets"
+            git push origin main
+            git push origin main:gh-pages --force
+          fi
+
+      - name: Check or Enable GitHub Pages API
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          echo "--- Checking Pages status ---"
+          gh api repos/${{ github.repository }}/pages || true
+          echo "--- Attempting POST to enable Pages on main / ---"
+          gh api -X POST repos/${{ github.repository }}/pages -f "source[branch]=main" -f "source[path]=/" || true
+          echo "--- Attempting PUT to set cname=daulx.com and source=main / ---"
+          gh api -X PUT repos/${{ github.repository }}/pages -f "cname=daulx.com" -f "source[branch]=main" -f "source[path]=/" || true
+          echo "--- Checking Pages status after ---"
+          gh api repos/${{ github.repository }}/pages > /tmp/pages-status.json 2>&1 || true
+          cat /tmp/pages-status.json
