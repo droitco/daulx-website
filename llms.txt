@@ -1,0 +1,18 @@
+# DAULX — https://daulx.com
+# Operator-built Websites, Local SEO, AI Search Optimization, Review Automation & 24/7 AI Phone Answering for Local Businesses.
+# Entity: Daulx, LLC
+
+## Core Pages
+- https://daulx.com/ — Overview of Daulx services, operator proof, medical/HIPAA capabilities, and FAQ
+- https://daulx.com/contact — Request a free 30-minute lead-leak and AI search audit
+- https://daulx.com/privacy — Privacy Policy and SMS opt-in protections
+- https://daulx.com/terms — Terms of Use
+- Email: brandon@daulx.com
+
+## Services Offered by Daulx, LLC
+- 24/7 AI Phone Answering: Natural-voice AI receptionist that answers every call day or night, handles common customer questions, captures leads, and routes urgent calls.
+- Local SEO, Google Maps & AI Search Readiness: Technical schema markup (JSON-LD), Google Business Profile optimization, Apple Business Connect, and citation architecture for ChatGPT, Siri, Perplexity, and Google Gemini.
+- High-Converting Websites: Fast, custom-engineered, mobile-first websites built to convert local searchers into phone calls and booked appointments.
+- Review Generation & Management: Automated 5-star review velocity and HIPAA-aware review response workflows.
+- Search & Local Ads: Paid search and local campaigns tracked directly to phone calls and booked revenue.
+- Back-Office Automation: Custom software integrations, missed-call text-back, and automated reporting.

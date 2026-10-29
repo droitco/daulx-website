@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Daulx">
+  <rect width="32" height="32" rx="7" fill="#0b1626"/>
+  <path d="M8 7h7.5c5.2 0 8.5 3.4 8.5 9s-3.3 9-8.5 9H8V7zm3.6 3.3v11.4h3.7c3.1 0 5-2.1 5-5.7s-1.9-5.7-5-5.7h-3.7z" fill="#ffffff"/>
+  <circle cx="23.5" cy="23.5" r="2.5" fill="#e1751f"/>
+</svg>
